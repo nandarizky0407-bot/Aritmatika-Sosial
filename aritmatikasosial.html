@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Pembelajaran Interaktif - Aritmatika Sosial</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+        }
+        .slide-container {
+            display: none;
+            min-height: 580px;
+        }
+        .slide-container.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col justify-between p-4 bg-slate-50 text-slate-800 selection:bg-slate-200">
+
+    <div id="deck" class="max-w-5xl w-full mx-auto bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex-grow flex flex-col justify-between relative overflow-y-auto">
+        
+        <div id="slide-1" class="slide-container active">
+            <div class="text-center my-auto space-y-6">
+                <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-semibold uppercase tracking-wider">Matematika SMP / Fase D</span>
+                <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">E-Modul Interaktif Aritmatika Sosial</h1>
+                <p class="text-xl text-slate-500 max-w-xl mx-auto">Memahami Konsep Finansial, Diskon, Bruto-Tara-Neto, dan Perbankan secara Bernalar Kritis</p>
+                <div class="max-w-xs mx-auto mt-8 p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+                    <label class="block text-xs font-medium text-slate-500 text-left uppercase">Nama Siswa:</label>
+                    <input type="text" id="studentName" value="Siswa" class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" placeholder="Masukkan nama siswa...">
+                </div>
+            </div>
+            <div class="text-center text-xs text-slate-400">Tekan tombol "Next" di bawah untuk memulai.</div>
+        </div>
+
+        <div id="slide-2" class="slide-container">
+            <div class="my-auto max-w-2xl mx-auto space-y-6">
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 2</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Tujuan Pembelajaran</h2>
+                <p class="text-slate-500">Setelah mengikuti sesi pembelajaran mandiri ini, siswa diharapkan mampu:</p>
+                <ol class="space-y-4 text-slate-700 text-sm">
+                    <li class="flex items-start gap-3">
+                        <span class="flex items-center justify-center w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold mt-0.5">1</span>
+                        <span>Menganalisis fenomena ekonomi harian terkait **Harga Jual, Harga Beli, Untung, Rugi, dan Persentasenya**.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="flex items-center justify-center w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold mt-0.5">2</span>
+                        <span>Menghitung nilai **Rabat (Diskon Tunggal/Bertingkat), Bruto, Tara, dan Neto** dalam rantai distribusi barang.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="flex items-center justify-center w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold mt-0.5">3</span>
+                        <span>Memodelkan perhitungan **Bunga Tunggal/Majemuk Tabungan** serta penyesuaian nilai akibat **Pajak (PPN & PPh)**.</span>
+                    </li>
+                </ol>
+            </div>
+            <div class="text-center text-xs text-slate-400">Target Kurikulum Merdeka Matematika Sosial.</div>
+        </div>
+
+        <div id="slide-3" class="slide-container">
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 3: Pemanasan Konversi</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-1 mb-4 border-b pb-2 border-slate-100">Kartu Tantangan Pemanasan</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-indigo-600 uppercase">Pertanyaan 1 (Pecahan)</span>
+                            <p class="mt-2 text-xs text-slate-600">Tentukan bentuk persen dari bilangan pecahan berikut:</p>
+                            <p class="text-xl font-bold my-3 text-center">$$\frac{4}{5}$$</p>
+                            <input type="text" id="s3Ans1" class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-center text-xs" placeholder="Contoh: 80%">
+                        </div>
+                        <button onclick="checkS3(1, '80%')" class="mt-4 px-3 py-1 bg-slate-900 text-white text-xs rounded hover:bg-slate-800">Cek Jawaban</button>
+                    </div>
+                    <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-indigo-600 uppercase">Pertanyaan 2 (Desimal)</span>
+                            <p class="mt-2 text-xs text-slate-600">Tentukan bentuk persen dari bilangan desimal berikut:</p>
+                            <p class="text-xl font-bold my-3 text-center">$$0,375$$</p>
+                            <input type="text" id="s3Ans2" class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-center text-xs" placeholder="Contoh: 37,5%">
+                        </div>
+                        <button onclick="checkS3(2, '37,5%')" class="mt-4 px-3 py-1 bg-slate-900 text-white text-xs rounded hover:bg-slate-800">Cek Jawaban</button>
+                    </div>
+                    <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-indigo-600 uppercase">Pertanyaan 3 (Kuantitas)</span>
+                            <p class="mt-2 text-xs text-slate-600">Sebuah keranjang berisi 40 buah mangga. Jika \(15\%\) mangga tersebut busuk, hitung banyak mangga yang busuk!</p>
+                            <input type="number" id="s3Ans3" class="w-full px-2 py-1 bg-white border border-slate-300 rounded text-center text-xs mt-6" placeholder="Contoh: 6">
+                        </div>
+                        <button onclick="checkS3(3, '6')" class="mt-4 px-3 py-1 bg-slate-900 text-white text-xs rounded hover:bg-slate-800">Cek Jawaban</button>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400">Pemanasan penting untuk kelancaran menghitung persentase untung/rugi/diskon nanti.</div>
+        </div>
+
+        <div id="slide-4" class="slide-container">
+            <div class="my-auto text-center space-y-6">
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 4: Peta Konsep</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Materi yang Akan Dipelajari Hari Ini</h2>
+                <p class="text-sm text-slate-500 max-w-lg mx-auto">Klik pada salah satu nama BAB di bawah ini untuk lompat secara instan menuju halaman pembahasan materi terkait.</p>
+                
+                <div class="max-w-xl mx-auto flex flex-col gap-3 pt-4">
+                    <button onclick="jumpToSlide(5)" class="w-full p-4 bg-slate-50 border border-slate-200 hover:border-slate-400 rounded-xl text-left font-semibold text-sm transition-all hover:bg-slate-100 flex justify-between items-center group">
+                        <span>📊 BAB 1: Harga Jual, Harga Beli, Untung, dan Rugi</span>
+                        <span class="text-xs text-slate-400 group-hover:text-slate-700">Menuju Slide 5 &rarr;</span>
+                    </button>
+                    <button onclick="jumpToSlide(8)" class="w-full p-4 bg-slate-50 border border-slate-200 hover:border-slate-400 rounded-xl text-left font-semibold text-sm transition-all hover:bg-slate-100 flex justify-between items-center group">
+                        <span>🏷️ BAB 2: Rabat (Diskon), Bruto, Tara, dan Neto</span>
+                        <span class="text-xs text-slate-400 group-hover:text-slate-700">Menuju Slide 8 &rarr;</span>
+                    </button>
+                    <button onclick="jumpToSlide(13)" class="w-full p-4 bg-slate-50 border border-slate-200 hover:border-slate-400 rounded-xl text-left font-semibold text-sm transition-all hover:bg-slate-100 flex justify-between items-center group">
+                        <span>🏦 BAB 3: Tabungan, Pajak, Bunga Tunggal & Majemuk</span>
+                        <span class="text-xs text-slate-400 group-hover:text-slate-700">Menuju Slide 13 &rarr;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="text-center text-xs text-slate-400">Modul Interaktif Navigasi Bebas Dinamis.</div>
+        </div>
+
+        <div id="slide-5" class="slide-container">
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 5: Pembahasan Materi</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-1 mb-4 border-b pb-2 border-slate-100">BAB 1: Harga Jual, Harga Beli, Untung, dan Rugi</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                    <div class="space-y-3">
+                        <div class="p-4 bg-emerald-50 border border-emerald-100 rounded-xl text-slate-700">
+                            <p class="font-bold text-emerald-800 mb-1">🟢 Kasus Untung (Harga Jual > Harga Beli)</p>
+                            Seorang pedagang membeli sepeda seharga \(\text{Rp } 1.000.000\) dan berhasil menjualnya kembali dengan harga \(\text{Rp } 1.200.000\). Pedagang tersebut mendapatkan untung sebesar \(\text{Rp } 200.000\).
+                        </div>
+                        <div class="p-4 bg-rose-50 border border-rose-100 rounded-xl text-slate-700">
+                            <p class="font-bold text-rose-800 mb-1">🔴 Kasus Rugi (Harga Jual &lt; Harga Beli)</p>
+                            Pedagang lain membeli gawai seharga \(\text{Rp } 2.000.000\). Karena terdapat goresan fisik, gawai tersebut terpaksa dijual hanya seharga \(\text{Rp } 1.700.000\). Pedagang tersebut mengalami kerugian sebesar \(\text{Rp } 300.000\).
+                        </div>
+                    </div>
+                    <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl flex flex-col justify-center space-y-4">
+                        <h3 class="font-bold text-sm text-slate-700 uppercase tracking-wide">Rumus Persentase Finansial</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-white rounded-lg border border-slate-100">
+                                <p class="text-slate-500 font-medium mb-1">Persentase Untung (\(\%U\)):</p>
+                                <p class="text-sm font-semibold">$$\%U = \frac{\text{Untung}}{\text{Harga Beli}} \times 100\%$$</p>
+                            </div>
+                            <div class="p-3 bg-white rounded-lg border border-slate-100">
+                                <p class="text-slate-500 font-medium mb-1">Persentase Rugi (\(\%R\)):</p>
+                                <p class="text-sm font-semibold">$$\%R = \frac{\text{Rugi}}{\text{Harga Beli}} \times 100\%$$</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400">Dasar utama: Nilai untung atau rugi selalu dibandingkan terhadap Harga Beli awal (modal).</div>
+        </div>
+
+        <div id="slide-6" class="slide-container">
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 6: Kasus Rekayasa Nilai</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-1 mb-4 border-b pb-2 border-slate-100">Menentukan Harga Beli & Jual Berbasis Persentase</h2>
+                
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-3 mb-4">
+                    <p class="font-bold text-slate-700">📋 Skenario Analisis:</p>
+                    <p class="text-slate-600 leading-relaxed">Pak Rudi menjual sebuah mesin cuci seharga \(\text{Rp } 2.300.000\) dan dari penjualan tersebut ia sudah mendapatkan keuntungan bersih sebesar \(15\%\). Berapakah modal awal (Harga Pembelian) yang dikeluarkan Pak Rudi untuk membeli mesin cuci tersebut?</p>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <div class="text-right">
+                        <button onclick="toggleElement('s6FormulaBox')" class="px-3 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg hover:bg-slate-800">📂 Tampilkan Tombol Rumus Solusi</button>
+                    </div>
+                    <div id="s6FormulaBox" class="hidden p-4 bg-indigo-50 border border-indigo-100 rounded-xl text-xs text-slate-700 transition-all space-y-2">
+                        <p class="font-bold text-indigo-900">💡 Rumus Konfigurasi Balik:</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1 font-mono">
+                            <div class="p-2 bg-white rounded border">Jika Untung: HB = \(\frac{100}{100 + \%U} \times \text{HJ}\)</div>
+                            <div class="p-2 bg-white rounded border">Jika Rugi: HB = \(\frac{100}{100 - \%R} \times \text{HJ}\)</div>
+                        </div>
+                        <p class="pt-2 text-[11px] text-slate-500">Penyelesaian Kasus Pak Rudi: \(\text{HB} = \frac{100}{115} \times 2.300.000 = \text{Rp } 2.000.000\).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400">Ingat bahwa Harga Jual (\(\text{HJ}\)) saat untung setara dengan \(100\% + \%U\).</div>
+        </div>
+
+        <div id="slide-7" class="slide-container">
+            <div>
+                <div class="flex justify-between items-center border-b pb-2 border-slate-100">
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 uppercase">Slide 7: Uji Kompetensi Bab 1</span>
+                        <h2 class="text-2xl font-bold text-slate-800 mt-1">Latihan Soal HOTS: Jual, Beli, Untung, Rugi</h2>
+                    </div>
+                    <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded">Soal <span id="s7Num">1</span> / 10</span>
+                </div>
+
+                <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl my-4 min-h-24 flex flex-col justify-between">
+                    <p id="s7Text" class="text-xs text-slate-700 leading-relaxed font-medium mb-3">Memuat butir soal...</p>
+                    <div id="s7Block" class="max-w-md flex items-center gap-2">
+                        <input type="text" id="s7Input" class="w-full px-3 py-1.5 border bg-white border-slate-300 rounded-lg text-xs font-semibold text-center" placeholder="Ketik angka tanpa titik/simbol...">
+                        <button onclick="checkS7Answer()" class="px-4 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg hover:bg-slate-800">Cek</button>
+                    </div>
+                </div>
+
+                <div id="s7SolBox" class="hidden p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 leading-relaxed font-mono">
+                    </div>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+                <button onclick="toggleElement('s7SolBox')" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded">Lihat Pembahasan</button>
+                <button onclick="nextS7Question()" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded">Ganti Soal &rarr;</button>
+            </div>
+        </div>
+
+        <div id="slide-8" class="slide-container">
+            <div class="my-auto text-center space-y-4">
+                <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-semibold uppercase tracking-wider">Materi Kedua</span>
+                <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">BAB 2: Rabat (Diskon), Bruto, Tara, dan Neto</h1>
+                <p class="text-sm text-slate-500 max-w-md mx-auto">Menganalisis potongan harga belanja belanjaan serta kalkulasi berat kotor, penyusutan kemasan, dan berat bersih muatan komoditas dagang.</p>
+            </div>
+            <div class="text-center text-xs text-slate-400">Tekan "Next" untuk membedah definisi masing-masing komponen.</div>
+        </div>
+
+        <div id="slide-9" class="slide-container">
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 9: Bedah Istilah</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-1 mb-4 border-b pb-2 border-slate-100">Definisi Logistik & Finansial Dagang</h2>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs mb-4">
+                    <div class="p-3 bg-slate-50 border rounded-xl"><p class="font-bold text-slate-800">🏷️ Rabat (Diskon)</p><p class="text-slate-500 text-[11px] mt-1">Potongan harga jual yang diberikan oleh produsen kepada pembeli.</p></div>
+                    <div class="p-3 bg-slate-50 border rounded-xl"><p class="font-bold text-slate-800">📦 Bruto</p><p class="text-slate-500 text-[11px] mt-1">Berat kotor suatu barang, yang mencakup isi beserta berat wadah kemasannya.</p></div>
+                    <div class="p-3 bg-slate-50 border rounded-xl"><p class="font-bold text-slate-800">🍂 Tara</p><p class="text-slate-500 text-[11px] mt-1">Potongan berat kemasan pembungkus/wadah kosong dari objek barang.</p></div>
+                    <div class="p-3 bg-slate-50 border rounded-xl"><p class="font-bold text-slate-800">🍏 Neto</p><p class="text-slate-500 text-[11px] mt-1">Berat bersih isi komoditas setelah dikurangi dengan berat tara pembungkus.</p></div>
+                </div>
+
+                <div class="flex gap-2 justify-end text-xs mb-3">
+                    <button onclick="showS9Interactive('kasus')" class="px-3 py-1 bg-slate-900 text-white rounded hover:bg-slate-800">📂 Tombol Contoh Kasus</button>
+                    <button onclick="showS9Interactive('rumus')" class="px-3 py-1 bg-slate-200 text-slate-700 rounded hover:bg-slate-300">📂 Tombol Rumus</button>
+                </div>
+
+                <div id="s9DisplayBox" class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 min-h-16 leading-relaxed">
+                    Klik salah satu tombol di atas untuk memunculkan teks contoh kasus nyata atau kompilasi rumus matematika terkait.
+                </div>
+            </div>
+            <div class="text-xs text-slate-400">Seluruh rumus berat ini menggunakan sistem persamaan penjumlahan linear dasar.</div>
+        </div>
+
+        <div id="slide-10" class="slide-container">
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 10: Pendalaman Komparasi</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-1 mb-4 border-b pb-2 border-slate-100">Kalkulasi Strategis Diskon Bertingkat</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                    <div class="space-y-3">
+                        <div class="p-4 bg-slate-50 border rounded-xl leading-relaxed">
+                            <p class="font-bold text-slate-800 mb-1">⚠️ Miskonsepsi Fatal Diskon Bertingkat:</p>
+                            Diskon tertulis <span class="font-bold text-rose-600">\(50\% + 50\%\)</span> **BUKAN BERARTI GRATIS (Diskon \(100\%\))**. 
+                            Sistem ritel memberlakukan potongan pertama pada harga awal, lalu potongan kedua diaplikasikan pada nilai sisa harga setelah potongan pertama tersebut dihitung.
+                        </div>
+                    </div>
+                    <div class="p-4 bg-indigo-50 border border-indigo-100 rounded-xl space-y-2">
+                        <p class="font-bold text-indigo-900">🧮 Contoh Simulasi Nyata:</p>
+                        <p class="text-slate-700">Sepasang sepatu dihargai \(\text{Rp } 400.000\) diberi promo diskon bertingkat \(50\% + 20\%\).</p>
+                        <ol class="list-decimal list-inside space-y-1 text-slate-600 pl-1 font-mono">
+                            <li>Potongan Tahap 1: \(50\% \times 400.000 = \text{Rp } 200.000\). Sisa Harga = \(\text{Rp } 200.000\).</li>
+                            <li>Potongan Tahap 2: \(20\% \times 200.000 = \text{Rp } 40.000\).</li>
+                            <li>Harga Akhir Kasir = \(200.000 - 40.000 = \mathbf{\text{Rp } 160.000}\).</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400">Formula praktis harga akhir untuk diskon bertingkat \(a\% + b\%\) adalah \((100-b)\% \times (100-a)\% \times \text{Harga Awal}\).</div>
+        </div>
+
+        <div id="slide-11" class="slide-container">
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 11: Analisis Massa Modul</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-1 mb-4 border-b pb-2 border-slate-100">Korelasi dan Perbandingan Bruto, Tara, Neto</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                    <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-3 flex flex-col justify-center">
+                        <h3 class="font-bold text-slate-700 uppercase">Hubungan Matematis Mutlak</h3>
+                        <div class="space-y-1 font-mono text-[13px] bg-white p-3 rounded-lg border">
+                            <p>$$\text{Bruto} = \text{Neto} + \text{Tara}$$</p>
+                            <p>$$\text{Neto} = \text{Bruto} - \text{Tara}$$</p>
+                            <p>$$\text{Tara} = \text{Bruto} - \text{Neto}$$</p>
+                        </div>
+                    </div>
+                    <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
+                        <h3 class="font-bold text-slate-700 uppercase">Persentase Tara (\(\%T\)) terhadap Bruto</h3>
+                        <p class="text-slate-600 leading-relaxed">Nilai persentase potongan berat penyusutan pembungkus (tara) selalu dipatok dan dihitung terhadap total berat kotor benda keseluruhan (bruto).</p>
+                        <div class="p-3 bg-white rounded-lg border font-mono">
+                            $$\text{Berat Tara} = \%T \times \text{Bruto}$$
+                        </div>
+                        <p class="text-[11px] text-slate-500 italic">Contoh: Karung beras bertuliskan Bruto \(50 \text{ kg}\), Tara \(1\%\). Maka berat tara penampung wadah = \(1\% \times 50 = 0,5 \text{ kg}\). Sehingga berat bersih beras (neto) = \(49,5 \text{ kg}\).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400">Dalam perdagangan partai besar, harga beli komoditas hanya dikenakan pada berat neto murni barang.</div>
+        </div>
+
+        <div id="slide-12" class="slide-container">
+            <div>
+                <div class="flex justify-between items-center border-b pb-2 border-slate-100">
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 uppercase">Slide 12: Uji Kompetensi Bab 2</span>
+                        <h2 class="text-2xl font-bold text-slate-800 mt-1">Latihan Soal HOTS: Diskon, Bruto, Tara, Neto</h2>
+                    </div>
+                    <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded">Soal <span id="s12Num">1</span> / 10</span>
+                </div>
+
+                <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl my-4 min-h-24 flex flex-col justify-between">
+                    <p id="s12Text" class="text-xs text-slate-700 leading-relaxed font-medium mb-3">Memuat butir soal...</p>
+                    <div id="s12Block" class="max-w-md flex items-center gap-2">
+                        <input type="text" id="s12Input" class="w-full px-3 py-1.5 border bg-white border-slate-300 rounded-lg text-xs font-semibold text-center" placeholder="Ketik angka hasil akhir pengerjaan...">
+                        <button onclick="checkS12Answer()" class="px-4 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg hover:bg-slate-800">Cek</button>
+                    </div>
+                </div>
+
+                <div id="s12SolBox" class="hidden p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 leading-relaxed font-mono">
+                    </div>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+                <button onclick="toggleElement('s12SolBox')" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded">Lihat Pembahasan</button>
+                <button onclick="nextS12Question()" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded">Ganti Soal &rarr;</button>
+            </div>
+        </div>
+
+        <div id="slide-13" class="slide-container">
+            <div class="my-auto text-center space-y-4">
+                <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-semibold uppercase tracking-wider">Materi Ketiga</span>
+                <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">BAB 3: Tabungan, Pajak, Bunga Tunggal & Majemuk</h1>
+                <p class="text-sm text-slate-500 max-w-md mx-auto">Mempelajari regulasi finansial perbankan meliputi pertambahan nominal bunga investasi modal serta pemotongan nilai dari wajib pajak negara.</p>
+            </div>
+            <div class="text-center text-xs text-slate-400">Tekan "Next" untuk mempelajari sistem tabungan reguler bank.</div>
+        </div>
+
+        <div id="slide-14" class="slide-container">
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 14: Dunia Perbankan</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-1 mb-4 border-b pb-2 border-slate-100">Konsep Akumulasi Tabungan Mandiri</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+                        <p class="font-bold text-slate-800">📌 Batasan Rumus Bunga Tunggal (Bulanan):</p>
+                        <p class="text-slate-600 leading-relaxed">Bunga tunggal dihitung eksklusif hanya berdasarkan modal utama tabungan awal saja yang konstan tiap periode.</p>
+                        <div class="p-3 bg-white rounded border font-mono">
+                            $$B = \frac{n}{12} \times b\% \times M_0$$
+                        </div>
+                        <p class="text-[10px] text-slate-400">Keterangan: \(B\) = Nominal bunga didapat, \(n\) = Jumlah bulan berjalan, \(b\%\) = Suku bunga per tahun, \(M_0\) = Modal simpanan dasar.</p>
+                    </div>
+
+                    <div class="p-4 bg-indigo-50 border border-indigo-100 rounded-xl space-y-2">
+                        <p class="font-bold text-indigo-900">📝 Contoh Kasus & Penyelesaian:</p>
+                        <p class="text-slate-700">Susi menabung modal \(\text{Rp } 4.000.000\) di bank dengan bunga tunggal \(6\%\) per tahun. Berapakah jumlah total nominal uang Susi setelah mengendap selama 8 bulan?</p>
+                        <div class="p-2.5 bg-white rounded border font-mono text-[11px] text-slate-600 space-y-1">
+                            <p>• Bunga: \(\frac{8}{12} \times \frac{6}{100} \times 4.000.000 = \text{Rp } 160.000\)</p>
+                            <p>• Total Uang Akhir: \(4.000.000 + 160.000 = \mathbf{\text{Rp } 4.160.000}\)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400">Suku bunga perbankan nasional umumnya dipatok dalam satuan persen per tahun (p.a / per annum).</div>
+        </div>
+
+        <div id="slide-15" class="slide-container">
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 15: Kebijakan Fiskal</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-1 mb-4 border-b pb-2 border-slate-100">Kalkulasi Pajak Negara: PPN dan PPh</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                    <div class="p-4 bg-rose-50 border border-rose-100 rounded-xl space-y-2">
+                        <p class="font-bold text-rose-900">🛍️ 1. PPN (Pajak Pertambahan Nilai)</p>
+                        <p class="text-slate-700 leading-relaxed">Pajak yang dikenakan pada transaksi jual beli barang/jasa mewah. Sifatnya **menambah** total biaya pembayaran konsumen belanja.</p>
+                        <p class="font-bold text-slate-800 pt-1">Contoh Kasus:</p>
+                        <p class="text-slate-600">Membeli laptop seharga \(\text{Rp } 8.000.000\) dengan beban PPN sebesar \(11\%\).</p>
+                        <div class="p-2 bg-white rounded border font-mono text-[11px]">
+                            • PPN = \(11\% \times 8.000.000 = \text{Rp } 880.000\)<br>
+                            • Total bayar = \(8.000.000 + 880.000 = \mathbf{\text{Rp } 8.880.000}\)
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-emerald-50 border border-emerald-100 rounded-xl space-y-2">
+                        <p class="font-bold text-emerald-900">💼 2. PPh (Pajak Penghasilan)</p>
+                        <p class="text-slate-700 leading-relaxed">Pajak yang dibebankan atas penghasilan atau gaji yang diterima pegawai. Sifatnya **mengurangi** total uang bawa pulang bersih.</p>
+                        <p class="font-bold text-slate-800 pt-1">Contoh Kasus:</p>
+                        <p class="text-slate-600">Pegawai menerima gaji pokok \(\text{Rp } 5.000.000\) kena potongan tarif PPh sebesar \(5\%\).</p>
+                        <div class="p-2 bg-white rounded border font-mono text-[11px]">
+                            • PPh = \(5\% \times 5.000.000 = \text{Rp } 250.000\)<br>
+                            • Gaji Bersih diterima = \(5.000.000 - 250.000 = \mathbf{\text{Rp } 4.750.000}\)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400">Pajak dikelola langsung oleh negara demi pemerataan pembangunan fasilitas publik.</div>
+        </div>
+
+        <div id="slide-16" class="slide-container">
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 16: Finansial Tingkat Lanjut</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-1 mb-4 border-b pb-2 border-slate-100">Bunga Tunggal Bersanding Bunga Majemuk</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+                    <div class="space-y-3">
+                        <div class="p-4 bg-slate-50 border rounded-xl leading-relaxed">
+                            <p class="font-bold text-slate-800 mb-1">⚖️ Perbedaan Esensial Komparatif:</p>
+                            Bunga Tunggal menghasilkan nominal laba konstan flat berulang tiap jangka waktu karena acuan pokoknya tidak berubah. Sedangkan **Bunga Majemuk (Bunga Berbunga)** menyertakan nominal profit periode lalu ke modal baru, menciptakan pertumbuhan eksponensial yang jauh lebih akseleratif.
+                        </div>
+                        <div class="p-4 bg-indigo-50 border border-indigo-100 rounded-xl font-mono text-[11px]">
+                            <p class="font-bold text-indigo-900 mb-1">🎛️ Rumus Tabungan Akhir Majemuk:</p>
+                            $$M_t = M_0 \times (1 + i)^t$$
+                            <p class="text-[10px] text-slate-500 mt-1">Keterangan: \(M_t\) = Uang akhir periode ke-\(t\), \(i\) = Suku persen bunga majemuk, \(t\) = Jangka waktu.</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-50 border rounded-xl space-y-2">
+                        <p class="font-bold text-slate-700">📊 Studi Kasus Perbandingan Nyata:</p>
+                        <p class="text-slate-600">Modal investasi awal \(\text{Rp } 10.000.000\) dilepas dengan suku bunga kompetitif \(10\%\) per tahun selama jangka target waktu 2 tahun.</p>
+                        <div class="p-3 bg-white border rounded space-y-2 text-[11px]">
+                            <p>🎯 **Skema Tunggal:** Tahun 1 untung \(1 \text{ jt}\), Tahun 2 untung \(1 \text{ jt}\). Total uang akhir setelah 2 tahun = \(\mathbf{\text{Rp } 12.000.000}\).</p>
+                            <p>🚀 **Skema Majemuk:** Akhir Tahun 1 uang tumbuh jadi \(11 \text{ jt}\). Bunga Tahun 2 dihitung dari baselining baru: \(10\% \times 11 \text{ jt} = 1,1 \text{ jt}\). Total uang akhir setelah 2 tahun = \(\mathbf{\text{Rp } 12.100.000}\).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400">Bunga majemuk merupakan basis penggerak utama instrumen investasi modern reksadana dan saham.</div>
+        </div>
+
+        <div id="slide-17" class="slide-container">
+            <div>
+                <div class="flex justify-between items-center border-b pb-2 border-slate-100">
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 uppercase">Slide 17: Uji Kompetensi Bab 3</span>
+                        <h2 class="text-2xl font-bold text-slate-800 mt-1">Latihan Soal HOTS: Tabungan, Pajak, dan Bunga</h2>
+                    </div>
+                    <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded">Soal <span id="s17Num">1</span> / 10</span>
+                </div>
+
+                <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl my-4 min-h-24 flex flex-col justify-between">
+                    <p id="s17Text" class="text-xs text-slate-700 leading-relaxed font-medium mb-3">Memuat butir soal...</p>
+                    <div id="s17Block" class="max-w-md flex items-center gap-2">
+                        <input type="text" id="s17Input" class="w-full px-3 py-1.5 border bg-white border-slate-300 rounded-lg text-xs font-semibold text-center" placeholder="Ketik angka bulat hasil akhir...">
+                        <button onclick="checkS17Answer()" class="px-4 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg hover:bg-slate-800">Cek</button>
+                    </div>
+                </div>
+
+                <div id="s17SolBox" class="hidden p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 leading-relaxed font-mono">
+                    </div>
+            </div>
+            <div class="flex justify-between items-center mt-4">
+                <button onclick="toggleElement('s17SolBox')" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded">Lihat Pembahasan</button>
+                <button onclick="nextS17Question()" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded">Ganti Soal &rarr;</button>
+            </div>
+        </div>
+
+        <div id="slide-18" class="slide-container">
+            <div>
+                <div class="flex justify-between items-center border-b pb-2 border-slate-100">
+                    <div>
+                        <span class="text-xs font-bold text-slate-400 uppercase">Slide 18: Gamifikasi Akhir Sesi</span>
+                        <h2 class="text-2xl font-bold text-slate-800 mt-1">Evaluasi Agung: 50 Kartu Tantangan Finansial</h2>
+                    </div>
+                    <div class="flex items-center gap-2 bg-rose-50 text-rose-700 p-2 rounded-xl border border-rose-200 text-xs font-bold">
+                        <span id="countdownDisplay">03:00</span>
+                        <button onclick="startCountdown()" class="px-2 py-0.5 bg-rose-700 text-white rounded text-[10px]">Start</button>
+                        <button onclick="add15Seconds()" class="px-2 py-0.5 bg-slate-200 text-slate-700 rounded text-[10px]">+15s</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-10 gap-1.5 my-3 max-h-36 overflow-y-auto p-1 bg-slate-50 rounded border" id="quizCardGrid">
+                    </div>
+
+                <div id="s18ActiveArea" class="hidden p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-600 uppercase" id="s18Title">Kartu Soal Terbuka</span>
+                        <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded font-bold font-mono">MATERI CAMPURAN</span>
+                    </div>
+                    <p id="s18Text" class="text-xs text-slate-700 leading-relaxed font-medium">Klik nomor kartu di atas terlebih dahulu untuk memicu pertanyaan keluar.</p>
+                    <div class="flex items-center gap-2 max-w-sm pt-1" id="s18InteractionBlock">
+                        <input type="text" id="s18Input" class="px-3 py-1.5 border bg-white border-slate-300 rounded-lg text-xs w-full text-center font-bold" placeholder="Ketik angka murni...">
+                        <button onclick="checkS18Answer()" class="px-4 py-1.5 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:bg-slate-800">Konfirmasi</button>
+                        <button onclick="toggleElement('s18SolBox')" class="px-2 py-1.5 bg-slate-200 text-slate-600 text-xs rounded-lg">Solusi</button>
+                    </div>
+                    <div id="s18SolBox" class="hidden text-xs text-slate-500 bg-white p-3 rounded-lg border font-mono"></div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400">Sistem timer akan secara otomatis tereset kembali ke durasi penuh 3 menit setiap kali kartu baru diklik oleh siswa.</div>
+        </div>
+
+        <div id="slide-19" class="slide-container">
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase">Slide 19: Lembar Rangkuman</span>
+                <h2 class="text-2xl font-bold text-slate-800 mt-1 mb-4 border-b pb-2 border-slate-100">Kesimpulan & Kompilasi Rumus Inti</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-[10px] text-slate-700 font-mono">
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+                        <p class="font-bold text-xs text-slate-800 mb-1">📊 BAB 1: Finansial Dagang</p>
+                        <p>• \(\text{Untung} = \text{HJ} - \text{HB}\)</p>
+                        <p>• \(\text{Rugi} = \text{HB} - \text{HJ}\)</p>
+                        <p>• \(\%U = \frac{\text{Untung}}{\text{HB}} \times 100\%\)</p>
+                        <p>• \(\text{HB (Untung)} = \frac{100}{100+\%U} \times \text{HJ}\)</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+                        <p class="font-bold text-xs text-slate-800 mb-1">🏷️ BAB 2: Berat & Diskon</p>
+                        <p>• \(\text{Diskon Nominal} = \%D \times \text{Harga KOTOR}\)</p>
+                        <p>• \(\text{Bruto} = \text{Neto} + \text{Tara}\)</p>
+                        <p>• \(\text{Neto} = \text{Bruto} - \text{Tara}\)</p>
+                        <p>• \(\text{Tara Nominal} = \%T \times \text{Bruto}\)</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+                        <p class="font-bold text-xs text-slate-800 mb-1">🏦 BAB 3: Bank & Pajak</p>
+                        <p>• \(\text{Bunga Tunggal} = \frac{n}{12} \times b\% \times M_0\)</p>
+                        <p>• \(\text{PPN Akhir} = (100\% + \%PPN) \times \text{Harga}\)</p>
+                        <p>• \(\text{PPh Bersih} = (100\% - \%PPh) \times \text{Gaji}\)</p>
+                        <p>• \(\text{Majemuk} = M_t = M_0(1+i)^t\)</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-3 bg-indigo-50 border border-indigo-100 rounded-xl">
+                    <p class="text-xs font-bold text-indigo-900 mb-1">📈 Log Kecepatan Pengerjaan Quiz Kartu Misteri:</p>
+                    <div class="max-h-24 overflow-y-auto text-[11px] text-slate-600 font-mono space-y-1 pl-1" id="s19DashboardLog">
+                        <p class="text-slate-400 italic">Belum ada aktivitas rekor quiz yang tersimpan pada sesi ini.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-400">Gunakan rangkuman ini sebagai panduan cepat saat mengulas kembali materi.</div>
+        </div>
+
+        <div id="slide-20" class="slide-container">
+            <div class="text-center my-auto space-y-4">
+                <span class="text-4xl">🎉</span>
+                <h1 class="text-4xl font-black text-slate-900 tracking-tight">Terima Kasih Banyak!</h1>
+                <p class="text-slate-500 text-sm max-w-sm mx-auto">Kamu telah berhasil menuntaskan seluruh modul materi dan latihan interaktif Aritmatika Sosial hari ini dengan sangat luar biasa!</p>
+                <div class="inline-block px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-full tracking-wide uppercase mt-4">
+                    Pertahankan Semangat Belajarmu!
+                </div>
+            </div>
+            <div class="text-center text-xs text-slate-400">Media Pembelajaran Mandat Mandiri Tutor Terintegrasi.</div>
+        </div>
+
+    </div>
+
+    <div class="max-w-5xl w-full mx-auto mt-4 flex justify-between items-center px-4">
+        <button id="globalPrevBtn" onclick="navigateDeck(-1)" class="px-4 py-2 bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs hover:bg-slate-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+            &larr; Previous
+        </button>
+        <div id="deckProgressIndicator" class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+            Slide 1 / 20
+        </div>
+        <button id="globalNextBtn" onclick="navigateDeck(1)" class="px-4 py-2 bg-slate-900 text-white font-semibold rounded-xl text-xs hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+            Next &rarr;
+        </button>
+    </div>
+
+    <script>
+        let activeSlideNum = 1;
+        const totalSlides = 20;
+
+        // Pembaca Suara Digital Alur Feedback
+        function playAudioFeedback(type) {
+            if ('speechSynthesis' in window) {
+                let name = document.getElementById('studentName').value || 'Siswa';
+                let txt = (type === 'correct') ? `Luar biasa ${name}, jawaban kamu tepat sekali!` : "Maaf, jawaban tersebut kurang tepat. Silakan coba lagi dan teliti kembali langkah hitungmu!";
+                let utterance = new SpeechSynthesisUtterance(txt);
+                utterance.lang = 'id-ID';
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function navigateDeck(direction) {
+            document.getElementById(`slide-${activeSlideNum}`).classList.remove('active');
+            activeSlideNum += direction;
+            if (activeSlideNum < 1) activeSlideNum = 1;
+            if (activeSlideNum > totalSlides) activeSlideNum = totalSlides;
+
+            document.getElementById(`slide-${activeSlideNum}`).classList.add('active');
+            document.getElementById('deckProgressIndicator').innerText = `Slide ${activeSlideNum} / ${totalSlides}`;
+
+            document.getElementById('globalPrevBtn').disabled = (activeSlideNum === 1);
+            document.getElementById('globalNextBtn').disabled = (activeSlideNum === totalSlides);
+        }
+
+        function jumpToSlide(num) {
+            document.getElementById(`slide-${activeSlideNum}`).classList.remove('active');
+            activeSlideNum = num;
+            document.getElementById(`slide-${activeSlideNum}`).classList.add('active');
+            document.getElementById('deckProgressIndicator').innerText = `Slide ${activeSlideNum} / ${totalSlides}`;
+            document.getElementById('globalPrevBtn').disabled = (activeSlideNum === 1);
+            document.getElementById('globalNextBtn').disabled = (activeSlideNum === totalSlides);
+        }
+
+        function toggleElement(id) {
+            document.getElementById(id).classList.toggle('hidden');
+        }
+
+        // ==========================================
+        // SCRIPT ENGINE SLIDE 3 (PMANASAN)
+        // ==========================================
+        function checkS3(id, correctVal) {
+            let inp = document.getElementById(`s3Ans${id}`).value.trim().replace(' ', '');
+            if(inp.toLowerCase() === correctVal.toLowerCase()) {
+                alert("Benar! Hebat.");
+                playAudioFeedback('correct');
+            } else {
+                alert("Kurang tepat, coba hitung lagi!");
+                playAudioFeedback('wrong');
+            }
+        }
+
+        // ==========================================
+        // SCRIPT ENGINE SLIDE 9
+        // ==========================================
+        function showS9Interactive(mode) {
+            let box = document.getElementById('s9DisplayBox');
+            if(mode === 'kasus') {
+                box.innerHTML = "<b>📌 Contoh Kasus Nyata Industri:</b><br>Sebuah pabrik saus mengemas produknya dalam botol kaca. Berat total botol terisi saus saat ditimbang adalah \(600 \text{ gram}\) (Bruto). Ketika saus dituangkan habis hingga kosong, berat wadah botol kaca kosongnya saja ternyata berbobot \(150 \text{ gram}\) (Tara). Dengan demikian, berat bersih saus yang bisa dikonsumsi adalah \(600 - 150 = 450 \text{ gram}\) (Neto). Apabila toko grosir membeli saus ini dalam jumlah banyak, mereka mendapatkan potongan harga khusus sebesar \(10\%\) (Rabat) dari harga katalog resmi produsen.";
+            } else {
+                box.innerHTML = "<b>🧮 Kompilasi Rumus Operasional Pokok:</b><br>1. Harga Bersih Belanja = Harga Kotor \(-\) Nilai Rabat (Diskon)<br>2. \(\text{Bruto} = \text{Neto} + \text{Tara}\)<br>3. \(\text{Neto} = \text{Bruto} - \text{Tara}\)<br>4. Nominal Berat \(\text{Tara} = \% \text{Tara} \times \text{Bruto}\)";
+            }
+            MathJax.typeset();
+        }
+
+        // ==========================================
+        // DATABASE LATIHAN SOAL HOTS (SLIDE 7, 12, 17)
+        // ==========================================
+        const dbS7 = [
+            { 
+                q: "Seorang agen buah membeli 4 keranjang mangga dengan total harga Rp 600.000. Biaya transportasi logistik sebesar Rp 50.000 dibayarkan per dua keranjang. Di perjalanan, 10% dari total mangga membusuk dan tidak bisa dijual. Jika total berat mangga yang tersisa dan layak jual adalah 90 kg, berapakah harga jual per kg mangga tersebut agar agen mendapatkan keuntungan bersih total tepat 20% dari seluruh modal yang dikeluarkan?", 
+                a: "9333", 
+                sol: "Total Modal = Rp 600.000 + (2 x Rp 50.000) = Rp 700.000. Target Penjualan (+20% untung) = 1.20 x Rp 700.000 = Rp 840.000. Sisa buah layak jual = 90 kg. Harga jual per kg = Rp 840.000 / 90 = Rp 9.333,33 (dibulatkan Rp 9333)." 
+            },
+            { 
+                q: "Sebuah toko ritel mebel menjual sebuah sofa premium dengan harga Rp 11.400.000 setelah memberikan diskon internal toko sebesar 5%. Jika ternyata toko tersebut masih membukukan keuntungan bersih sebesar 20% dari harga perolehan modal awalnya, berapakah harga beli modal awal sofa tersebut sebelum dikenakan margin untung dan diskon?", 
+                a: "9500000", 
+                sol: "Harga sebelum diskon (100%) tidak perlu dicari jika fokus ke Harga Jual riil kasir. HJ Riil = Rp 11.400.000. Karena untung 20% dari modal, maka HJ Riil = 120% dari Harga Beli (HB). HB = (100 / 120) x Rp 11.400.000 = Rp 9.500.000." 
+            },
+            { 
+                q: "Seorang peternak ayam memproduksi 500 butir telur. Sebanyak 300 butir telur kualitas A dijual seharga Rp 2.500/butir. Sebanyak 150 butir kualitas B dijual seharga Rp 2.000/butir. Sisa telur pecah dan tidak dapat dijual. Jika peternak mengalami kerugian total sebesar 5% dari modal akibat insiden telur pecah tersebut, berapakah total modal awal pengeluaran peternak tersebut?", 
+                a: "1105263", 
+                sol: "Total Pendapatan (HJ) = (300 x Rp 2.500) + (150 x Rp 2.000) = Rp 750.000 + Rp 300.000 = Rp 1.050.000. Karena rugi 5%, maka pendapatan ini setara dengan 95% dari modal. Modal (HB) = (100 / 95) x Rp 1.050.000 = Rp 1.105.263." 
+            },
+            {
+                q: "Seorang pedagang membeli pakaian anak seharga Rp 80.000 per potong. Ia merencanakan melabeli pakaian tersebut dengan harga tinggi agar saat diberikan 'Diskon Palsu' sebesar 20%, ia tetap mendapatkan keuntungan murni sebesar 15% dari modalnya. Berapakah harga label banderol yang harus ditulis oleh pedagang tersebut?",
+                a: "115000",
+                sol: "Target Harga Jual (untung 15%) = 1.15 x Rp 80.000 = Rp 92.000. Karena didiskon 20%, maka Rp 92.000 = 80% dari harga label. Harga Label = (100 / 80) x Rp 92.000 = Rp 115.000."
+            },
+            {
+                q: "Seorang investor membeli sebidang tanah seharga Rp 200.000.000. Setiap tahun nilai tanah naik 10% secara konstan dari harga belinya (keuntungan flat). Namun, ia harus membayar pajak properti tahunan flat sebesar Rp 2.000.000. Jika ia menjual tanah tersebut tepat setelah 3 tahun, berapakah total keuntungan bersih yang ia kantongi setelah dipotong akumulasi pajak?",
+                a: "54000000",
+                sol: "Kenaikan nilai 3 tahun = 3 x (10% x Rp 200.000.000) = Rp 60.000.000. Total Pajak 3 tahun = 3 x Rp 2.000.000 = Rp 6.000.000. Keuntungan bersih = Rp 60.000.000 - Rp 6.000.000 = Rp 54.000.000."
+            },
+            {
+                q: "Pak Andi membeli 2 unit motor bekas dengan total harga Rp 24.000.000. Motor pertama dijual dan menghasilkan untung 15%, sedangkan motor kedua dijual rugi 10%. Jika hasil akhir dari penjualan kedua motor tersebut impas (tidak untung dan tidak rugi), berapakah harga beli awal untuk motor pertama?",
+                a: "9600000",
+                sol: "Misal HB1 = x, maka HB2 = 24.000.000 - x. Untung1 = Rugi2 -> 0.15x = 0.10(24.000.000 - x) -> 0.15x = 2.400.000 - 0.10x -> 0.25x = 2.400.000 -> x = Rp 9.600.000."
+            },
+            {
+                q: "Sebuah distributor gadget membeli sebuah smartphone seharga Rp 4.000.000. Distributor menjual ke agen dengan untung 10%. Agen menjual ke toko retail dengan mengambil untung 5%. Toko retail menjual ke konsumen akhir dengan untung 15%. Berapakah harga yang harus dibayar oleh konsumen akhir tersebut? (Gunakan pembulatan tanpa desimal)",
+                a: "5313000",
+                sol: "Harga Agen = 1.10 x 4.000.000 = 4.400.000. Harga Retail = 1.05 x 4.400.000 = 4.620.000. Harga Konsumen = 1.15 x 4.620.000 = Rp 5.313.000."
+            },
+            {
+                q: "Seseorang membeli drone seharga Rp 5.000.000. Setelah satu tahun, ia menjual drone tersebut karena butuh uang dan mengalami kerugian sebesar 18%. Setengah dari uang hasil penjualan tersebut digunakan untuk modal dagang kecil yang menghasilkan untung 25%. Berapakah sisa total gabungan uang tunai orang tersebut sekarang?",
+                a: "4612500",
+                sol: "Uang hasil jual drone = Rp 5.000.000 x 0.82 = Rp 4.100.000. Setengah uang = Rp 2.050.000. Uang modal berputar untung 25% = 1.25 x Rp 2.050.000 = Rp 2.562.500. Total uang sekarang = Rp 2.050.000 (sisa setengah awal) + Rp 2.562.500 = Rp 4.612.500."
+            },
+            {
+                q: "Sebuah kedai kopi membeli biji kopi Arabika seharga Rp 120.000/kg. Dalam proses penyangraian (roasting), berat biji kopi menyusut sebesar 20%. Kedai tersebut menyeduh kopi dengan takaran 20 gram kopi sangrai per cangkir. Jika biaya air dan cangkir adalah Rp 3.000 per porsi dan kopi dijual seharga Rp 15.000/cangkir, berapakah keuntungan bersih per cangkir kopi?",
+                a: "9000",
+                sol: "Menyusut 20%, maka 1 kg mentah menjadi 800 gram sangrai. Harga modal per gram sangrai = Rp 120.000 / 800 = Rp 150/gram. Modal kopi per cangkir = 20 gram x Rp 150 = Rp 3.000. Total modal per cangkir = Rp 3.000 + Rp 3.000 (air/cangkir) = Rp 6.000. Keuntungan per cangkir = Rp 15.000 - Rp 6.000 = Rp 9.000."
+            },
+            {
+                q: "Seorang pedagang buah grosir membeli 100 kg jeruk seharga Rp 1.500.000. Pedagang mengelompokkan jeruk: 40 kg jeruk ukuran besar dijual Rp 22.000/kg, 40 kg jeruk ukuran sedang dijual Rp 18.000/kg. Sisa jeruk berukuran kecil dijual murah. Jika pedagang ingin memperoleh total keuntungan sebesar 20% dari modal keseluruhan, berapakah harga jual minimum per kg untuk sisa jeruk kecil tersebut?",
+                a: "10000",
+                sol: "Target Total Pendapatan = 1.20 x Rp 1.500.000 = Rp 1.800.000. Pendapatan jeruk besar & sedang = (40 x 22.000) + (40 x 18.000) = 880.000 + 720.000 = Rp 1.600.000. Sisa target pendapatan dari jeruk kecil = Rp 1.800.000 - Rp 1.600.000 = Rp 200.000. Sisa jeruk kecil = 100 - 40 - 40 = 20 kg. Harga per kg = Rp 200.000 / 20 = Rp 10.000."
+            }
+        ];
+
+        const dbS12 = [
+            { 
+                q: "Sebuah swalayan mengenakan ketentuan diskon bertingkat (50% + 20%) untuk semua pakaian anak, serta tambahan potongan kupon member di akhir transaksi sebesar Rp 20.000 jika belanjaan di atas Rp 100.000. Berapakah uang kasir yang harus dibayarkan jika total tagihan awal tertera Rp 400.000?", 
+                a: "140000", 
+                sol: "Potongan tahap 1 (50%) = Rp 200.000. Potongan tahap 2 (20% dari Rp 200.000) = Rp 40.000. Sisa tagihan = Rp 200.000 - Rp 40.000 = Rp 160.000. Karena di atas Rp 100.000, potong kupon member: Rp 160.000 - Rp 20.000 = Rp 140.000." 
+            },
+            { 
+                q: "Seorang pengusaha membeli 10 karung semen dengan Bruto total seberat 500 kg. Setelah ditimbang ulang, kemasan kosong dari satu karung semen memiliki berat 500 gram. Jika harga beli semen murni dihitung Rp 2.000 per kg Neto, berapakah total nilai nominal harga beli bersih seluruh semen tersebut?", 
+                a: "990000", 
+                sol: "Tara per karung = 0.5 kg. Total tara untuk 10 karung = 10 x 0.5 kg = 5 kg. Total Neto = 500 kg - 5 kg = 495 kg. Total Biaya Pembelian = 495 kg x Rp 2.000 = Rp 990.000." 
+            },
+            {
+                q: "Sebuah peti buah berisi apel memiliki berat kotor (bruto) 40 kg dan tara 5%. Jika harga beli apel adalah Rp 25.000 per kg bersih (neto), dan pemilik toko ingin menjual kembali apel tersebut dengan mengharapkan keuntungan total Rp 150.000, berapakah harga jual seluruh buah apel di dalam peti tersebut?",
+                a: "1100000",
+                sol: "Berat Tara = 5% x 40 kg = 2 kg. Berat Neto = 40 kg - 2 kg = 38 kg. Total Harga Beli Neto = 38 kg x Rp 25.000 = Rp 950.000. Total Harga Jual (+ untung) = Rp 950.000 + Rp 150.000 = Rp 1.100.000."
+            },
+            {
+                q: "Suatu produk kecantikan dipasarkan dengan dua pilihan promo. Promo A memberikan diskon tunggal sebesar 35%. Promo B memberikan diskon bertingkat (20% + 15%). Jika harga dasar kosmetik tersebut adalah Rp 200.000, berapakah selisih harga akhir yang dibayarkan antara Promo A dan Promo B?",
+                a: "6000",
+                sol: "Promo A: Harga = Rp 200.000 x 0.65 = Rp 130.000. Promo B: Tahap 1 = Rp 200.000 x 0.80 = Rp 160.000. Tahap 2 = Rp 160.000 x 0.85 = Rp 136.000. Selisih akhir = Rp 136.000 - Rp 130.000 = Rp 6.000."
+            },
+            {
+                q: "Sebuah truk logistik mengangkut 40 kotak susu formula dengan bruto total 120 kg. Diketahui tara dari setiap kotak pelindung kayu adalah 2,5%. Jika harga retail susu formula tersebut adalah Rp 150.000 per kg neto, berapakah total nilai aset neto komoditas susu formula yang diangkut truk tersebut?",
+                a: "17550000",
+                sol: "Total Tara = 2.5% x 120 kg = 3 kg. Total Neto susu formula = 120 kg - 3 kg = 117 kg. Total Nilai Aset = 117 kg x Rp 150.000 = Rp 17.550.000."
+            },
+            {
+                q: "Seseorang membeli kecap manis dalam kemasan botol besar dengan harga Rp 48.000. Pada kemasan tertulis Bruto 1,2 kg dan Tara 20%. Ia ingin mengemas ulang kecap tersebut ke dalam botol kecil dengan berat neto masing-masing 120 gram. Berapa banyak kemasan botol kecil isi kecap yang dapat ia buat?",
+                a: "8",
+                sol: "Neto total = Bruto - Tara = 1.2 kg - (20% x 1.2 kg) = 1.2 - 0.24 = 0.96 kg = 960 gram. Jumlah botol kecil = 960 gram / 120 gram = 8 botol."
+            },
+            {
+                q: "Seorang pedagang membeli sekeranjang manggis dengan berat bruto 50 kg seharga Rp 720.000. Diketahui berat keranjang wadah kosong tersebut (tara) adalah 4 kg. Selama proses penyimpanan, manggis mengalami penyusutan berat neto sebesar 5%. Berapakah harga jual per kg manggis setelah penyusutan agar pedagang impas?",
+                a: "16476",
+                sol: "Neto awal = 50 - 4 = 46 kg. Menyusut 5%, sisa neto = 0.95 x 46 kg = 43.7 kg. Agar modal kembali (impas Rp 720.000), harga jual per kg = Rp 720.000 / 43.7 = Rp 16.475,97 (dibulatkan Rp 16476)."
+            },
+            {
+                q: "Suatu jenis keju batang impor dikemas dengan kemasan aluminium foil tipis dengan persentase tara hanya 0,8%. Jika berat bersih (neto) keju tersebut adalah 496 gram, hitunglah total berat kotor (bruto) kemasan keju tersebut dalam satuan gram!",
+                a: "500",
+                sol: "Neto = Bruto - Tara -> 496 gram = Bruto - (0.008 x Bruto) -> 496 = 0.992 x Bruto -> Bruto = 496 / 0.992 = 500 gram."
+            },
+            {
+                q: "Toko Buku memberikan diskon tahun baru sebesar 25% untuk semua jenis novel. Rian membeli 3 buah novel berharga sama dan membayar menggunakan selembar uang Rp 200.000. Jika ia menerima kembalian sebesar Rp 20.000, berapakah harga normal satu buah novel tersebut sebelum didiskon?",
+                a: "80000",
+                sol: "Total bayar riil = Rp 200.000 - Rp 20.000 = Rp 180.000. Harga bayar per novel = Rp 180.000 / 3 = Rp 60.000. Karena didiskon 25%, maka Rp 60.000 = 75% dari harga normal. Harga normal = (100 / 75) x Rp 60.000 = Rp 80.000."
+            },
+            {
+                q: "Sebuah karung gandum memiliki berat kotor 80 kg dengan tara 1,5%. Gandum tersebut dibeli seharga Rp 10.000 per kg neto. Jika pembeli mendapatkan potongan tunai (rabat komersial) sebesar 5% dari total harga beli netonya saat melakukan pembayaran tunai, berapakah uang yang akhirnya dikeluarkan pembeli?",
+                a: "748600",
+                sol: "Tara = 1.5% x 80 = 1.2 kg. Neto = 80 - 1.2 = 78.8 kg. Harga sebelum rabat = 78.8 kg x Rp 10.000 = Rp 788.000. Harga setelah potongan tunai 5% = 0.95 x Rp 788.000 = Rp 748.600."
+            }
+        ];
+
+        const dbS17 = [
+            { 
+                q: "Aris menyimpan modal awal sebesar Rp 15.000.000 di bank komersial dengan penawaran bunga tunggal 8% per tahun. Di akhir masa simpanan, seluruh uang diambil untuk membeli sepeda motor seharga Rp 16.500.000, namun ternyata sisa uang tunainya masih ada Rp 500.000. Berapa bulankah Aris telah menabung dana modalnya?", 
+                a: "20", 
+                sol: "Total Uang Akhir Tabungan = Rp 16.500.000 + Rp 500.000 = Rp 17.000.000. Bunga didapat = Rp 2.000.000. Bunga per tahun = 8% x Rp 15.000.000 = Rp 1.200.000 (Rp 100.000/bulan). Durasi = 2.000.000 / 100.000 = 20 bulan." 
+            },
+            { 
+                q: "Seorang manajer menerima bonus performa kerja sebesar Rp 25.000.000 yang dikenakan potongan wajib pajak PPh sebesar 5%. Seluruh sisa uang bersih bonus tersebut langsung dibelanjakan untuk membeli logam mulia yang dikenakan biaya PPN tambahan sebesar 11%. Berapakah sisa uang tunai yang dipegang manajer jika harga dasar logam mulia tersebut pas Rp 21.000.000?", 
+                a: "440000", 
+                sol: "Uang bersih bonus setelah PPh (95%) = 0.95 x Rp 25.000.000 = Rp 23.750.000. Total harga beli logam mulia + PPN (111%) = 1.11 x Rp 21.000.000 = Rp 23.310.000. Sisa uang tunai = Rp 23.750.000 - Rp 23.310.000 = Rp 440.000." 
+            },
+            {
+                q: "Riana menginvestasikan uang sebesar Rp 10.000.000 di sebuah instrumen reksa dana dengan sistem bunga majemuk sebesar 10% per tahun. Hitunglah berapa rupiah total akumulasi nominal bunga saja yang dihasilkan modal investasi Riana tepat pada akhir tahun kedua berjalan!",
+                a: "2100000",
+                sol: "Akhir Tahun 1 = Rp 10.000.000 x 1.10 = Rp 11.000.000. Akhir Tahun 2 = Rp 11.000.000 x 1.10 = Rp 12.100.000. Nominal bunga saja = Rp 12.100.000 - Rp 10.000.000 = Rp 2.100.000."
+            },
+            {
+                q: "Sebuah keluarga makan malam di sebuah restoran dengan total tagihan menu makanan Rp 600.000. Restoran tersebut memberlakukan pajak restoran (PPN) sebesar 10% serta biaya layanan (service charge) sebesar 5% yang dihitung dari total dasar menu awal. Berapakah total uang tunai yang harus diserahkan keluarga tersebut saat membayar di meja kasir?",
+                a: "690000",
+                sol: "Beban Pajak PPN = 10% x 600.000 = Rp 60.000. Biaya Layanan = 5% x 600.000 = Rp 30.000. Total Tagihan Akhir = Rp 600.000 + Rp 60.000 + Rp 30.000 = Rp 690.000."
+            },
+            {
+                q: "Setiap bulan seorang karyawan mendapatkan gaji bruto Rp 8.000.000. Dari gaji tersebut, penghasilan tidak kena pajak (PTKP) ditentukan sebesar Rp 3.000.000, sedangkan sisa gaji di atas PTKP dikenakan tarif PPh sebesar 10%. Berapakah total gaji bersih netto yang dibawa pulang karyawan tersebut setiap bulannya?",
+                a: "7500000",
+                sol: "Gaji yang kena pajak = Rp 8.000.000 - Rp 3.000.000 = Rp 5.000.000. Potongan PPh = 10% x Rp 5.000.000 = Rp 500.000. Gaji bersih bawa pulang = Rp 8.000.000 - Rp 500.000 = Rp 7.500.000."
+            },
+            {
+                q: "Deni mendepositokan uang pokoknya di bank sebesar Rp 40.000.000 dengan skema bunga tunggal 6% per tahun. Diketahui setiap pencairan keuntungan bunga bulanan akan dipotong pajak deviden perbankan sebesar 20%. Berapakah total nominal keuntungan bunga bersih yang diterima Deni setelah menabung selama 10 bulan?",
+                a: "1600000",
+                sol: "Bunga Kotor 10 bulan = (10/12) x 6% x Rp 40.000.000 = Rp 2.000.000. Pajak atas bunga (20%) = 20% x Rp 2.000.000 = Rp 400.000. Bunga bersih akhir = Rp 2.000.000 - Rp 400.000 = Rp 1.600.000."
+            },
+            {
+                q: "Sebuah perusahaan teknologi mencatatkan nilai valuasi awal Rp 100.000.000. Setiap tahun, valuasi perusahaan naik secara majemuk sebesar 20% dari tahun sebelumnya. Berapakah nilai total peningkatan (pertumbuhan) valuasi perusahaan tersebut setelah berjalan selama 3 tahun?",
+                a: "72800000",
+                sol: "Valuasi Akhir = Rp 100.000.000 x (1.20)^3 = Rp 100.000.000 x 1.728 = Rp 172.800.000. Nilai peningkatannya saja = Rp 172.800.000 - Rp 100.000.000 = Rp 72.800.000."
+            },
+            {
+                q: "Seorang pengusaha membeli sebuah mesin pabrik impor seharga Rp 50.000.000. Karena barang impor mewah, mesin dikenakan tarif bea masuk tambahan pajak sebesar 12%. Pengusaha membayar uang muka Rp 26.000.000, berapakah sisa tagihan utang pengusaha yang harus dilunasi setelah ditambah pajak tersebut?",
+                a: "30000000",
+                sol: "Total Harga setelah ditambah bea masuk mewah = 1.12 x Rp 50.000.000 = Rp 56.000.000. Sisa tagihan = Total Harga - Uang Muka = Rp 56.000.000 - Rp 26.000.000 = Rp 30.000.000."
+            },
+            {
+                q: "Pak Joko meminjam uang modal usaha di koperasi sebesar Rp 12.000.000 dengan bunga tunggal cicilan flat sebesar 10% per tahun. Jika Pak Joko berencana melunasi pinjaman beserta bunganya dengan mencicil bulanan selama 1,5 tahun, berapakah besar nominal uang angsuran cicilan yang wajib dibayarkan Pak Joko per bulannya?",
+                a: "766667",
+                sol: "Waktu n = 1.5 tahun = 18 bulan. Total Bunga = 1.5 x 10% x Rp 12.000.000 = Rp 1.800.000. Total Utang = Rp 12.000.000 + Rp 1.800.000 = Rp 13.800.000. Angsuran per bulan = Rp 13.800.000 / 18 = Rp 766.666,67 (dibulatkan Rp 766667)."
+            },
+            {
+                q: "Tabungan modal rahasia Susi tumbuh menjadi Rp 5.450.000 setelah disimpan selama 15 bulan di bank dengan bunga tunggal berkala sebesar 9% per tahun. Berapakah nominal rupiah uang tabungan pokok awal yang pertama kali disetorkan oleh Susi?",
+                a: "4909910",
+                sol: "Persentase bunga akumulasi = (15 / 12) x 9% = 11.25%. Jadi, Rp 5.450.000 setara dengan 111.25% dari modal awal. Tabungan Pokok = (100 / 111.25) x Rp 5.450.000 = Rp 4.909.909,90 (dibulatkan Rp 4909910)."
+            }
+        ];
+
+        let idxS7 = 0, idxS12 = 0, idxS17 = 0;
+
+        function loadS7() {
+            let d = dbS7[idxS7 % dbS7.length];
+            document.getElementById('s7Num').innerText = (idxS7 % 10) + 1;
+            document.getElementById('s7Text').innerHTML = d.q;
+            document.getElementById('s7Input').value = "";
+            document.getElementById('s7Block').className = "max-w-md flex items-center gap-2";
+            document.getElementById('s7SolBox').classList.add('hidden');
+        }
+        function checkS7Answer() {
+            let d = dbS7[idxS7 % dbS7.length];
+            let val = document.getElementById('s7Input').value.trim();
+            let el = document.getElementById('s7Block');
+            if(val === d.a) {
+                el.className = "max-w-md flex items-center gap-2 p-2 bg-emerald-100 border border-emerald-300 rounded-xl text-emerald-950 font-bold";
+                playAudioFeedback('correct');
+            } else {
+                el.className = "max-w-md flex items-center gap-2 p-2 bg-rose-100 border border-rose-300 rounded-xl text-rose-950 font-bold";
+                playAudioFeedback('wrong');
+            }
+        }
+        function nextS7Question() { idxS7++; loadS7(); }
+
+        function loadS12() {
+            let d = dbS12[idxS12 % dbS12.length];
+            document.getElementById('s12Num').innerText = (idxS12 % 10) + 1;
+            document.getElementById('s12Text').innerHTML = d.q;
+            document.getElementById('s12Input').value = "";
+            document.getElementById('s12Block').className = "max-w-md flex items-center gap-2";
+            document.getElementById('s12SolBox').classList.add('hidden');
+        }
+        function checkS12Answer() {
+            let d = dbS12[idxS12 % dbS12.length];
+            let val = document.getElementById('s12Input').value.trim();
+            let el = document.getElementById('s12Block');
+            if(val === d.a) {
+                el.className = "max-w-md flex items-center gap-2 p-2 bg-emerald-100 border border-emerald-300 rounded-xl text-emerald-950 font-bold";
+                playAudioFeedback('correct');
+            } else {
+                el.className = "max-w-md flex items-center gap-2 p-2 bg-rose-100 border border-rose-300 rounded-xl text-rose-950 font-bold";
+                playAudioFeedback('wrong');
+            }
+        }
+        function nextS12Question() { idxS12++; loadS12(); }
+
+        function loadS17() {
+            let d = dbS17[idxS17 % dbS17.length];
+            document.getElementById('s17Num').innerText = (idxS17 % 10) + 1;
+            document.getElementById('s17Text').innerHTML = d.q;
+            document.getElementById('s17Input').value = "";
+            document.getElementById('s17Block').className = "max-w-md flex items-center gap-2";
+            document.getElementById('s17SolBox').classList.add('hidden');
+        }
+        function checkS17Answer() {
+            let d = dbS17[idxS17 % dbS17.length];
+            let val = document.getElementById('s17Input').value.trim();
+            let el = document.getElementById('s17Block');
+            if(val === d.a) {
+                el.className = "max-w-md flex items-center gap-2 p-2 bg-emerald-100 border border-emerald-300 rounded-xl text-emerald-950 font-bold";
+                playAudioFeedback('correct');
+            } else {
+                el.className = "max-w-md flex items-center gap-2 p-2 bg-rose-100 border border-rose-300 rounded-xl text-rose-950 font-bold";
+                playAudioFeedback('wrong');
+            }
+        }
+        function nextS17Question() { idxS17++; loadS17(); }
+
+        // ==========================================
+        // SCRIPT GAMIFIKASI ENGINE SLIDE 18 (50 KARTU)
+        // ==========================================
+        let s18ActiveNum = null;
+        let s18TimerVal = 180;
+        let s18Interval = null;
+        let quizLogs = [];
+
+        // Seed generator database 50 pertanyaan variatif aritmatika sosial
+        const dbQuiz50 = [
+            // KARTU 1 - 10: VARIASI BAB 1 (JUAL, BELI, UNTUNG, RUGI)
+            { q: "Card 1: Seseorang membeli jam tangan bekas seharga Rp 400.000. Mengganti baterai seharga Rp 50.000. Jam tersebut dijual kembali seharga Rp 540.000. Hitung persen untung bersih dari total modal belanja!", a: "20", sol: "Total Modal = 450.000. Untung = 90.000. Persentase = (90.000 / 450.000) * 100% = 20%." },
+            { q: "Card 2: Toko Buku menjual kamus seharga Rp 180.000 dan menderita rugi 10%. Berapakah harga pokok pembelian awal buku kamus tersebut?", a: "200000", sol: "Harga Beli = 100 / 90 * 180.000 = Rp 200.000." },
+            { q: "Card 3: Sepuluh pasang sepatu dibeli dengan harga total Rp 1.500.000. Jika 8 pasang terjual seharga Rp 200.000 per pasang dan sisanya rusak tidak terjual, berapakah keuntungan nominal rupiah pedagang?", a: "100000", sol: "Total penjualan = 8 * 200.000 = 1.600.000. Keuntungan = 1.600.000 - 1.500.000 = Rp 100.000." },
+            { q: "Card 4: Seorang pedagang membeli gandum seharga Rp 6.000/kg. Ia menjual kembali seharga Rp 7.200/kg. Berapakah tingkat persentase keuntungan pedagang tersebut?", a: "20", sol: "Untung = 1.200. Persentase = (1.200 / 6.000) * 100% = 20%." },
+            { q: "Card 5: Seorang kolektor menjual lukisan seharga Rp 12.000.000 dan memperoleh untung fantastis selevel 25%. Berapakah modal awal pengeluaran kolektor tersebut?", a: "9600000", sol: "Harga Beli = 100 / 125 * 12.000.000 = Rp 9.600.000." },
+            { q: "Card 6: Seseorang terpaksa menjual mobilnya seharga Rp 90.000.000 karena butuh mendesak dan rugi 10%. Berapakah harga beli mobil tersebut dahulu kala?", a: "100000000", sol: "Harga Beli = 100 / 90 * 90.000.000 = Rp 100.000.000." },
+            { q: "Card 7: Membeli 50 kg telur seharga Rp 1.000.000. Sebanyak 2 kg telur pecah di jalan. Sisa telur dijual dengan harga Rp 24.000 per kg. Berapakah nominal keuntungan bersih pedagang?", a: "152000", sol: "Sisa telur = 48 kg. Total HJ = 48 * 24.000 = 1.152.000. Untung = 1.152.000 - 1.000.000 = Rp 152.000." },
+            { q: "Card 8: Toko mainan membeli boneka seharga Rp 50.000/unit. Jika toko menginginkan laba bersih murni 30% per boneka, berapakah label harga jual kasir yang harus dipasang toko?", a: "65000", sol: "Harga Jual = 1.30 * 50.000 = Rp 65.000." },
+            { q: "Card 9: Seseorang membeli sepeda seharga Rp 2.000.000. Setelah diperbaiki senilai Rp 400.000, ia menjualnya seharga Rp 2.160.000. Hitung berapa persentase kerugian yang ia derita!", a: "10", sol: "Total Modal = 2.400.000. Kerugian = 2.400.000 - 2.160.000 = 240.000. Persen Rugi = (240.000 / 2.400.000) * 100% = 10%." },
+            { q: "Card 10: Pedagang buah kulakan mangga seharga Rp 15.000/kg. Jika ia menjualnya seharga Rp 19.500/kg, berapakah persentase margin laba yang ia peroleh?", a: "30", sol: "Untung = 4.500. Persen untung = (4.500 / 15.000) * 100% = 30%." },
+
+            // KARTU 11 - 25: VARIASI BAB 2 (DISKON, BRUTO, TARA, NETO)
+            { q: "Card 11: Sebuah kemeja berbanderol Rp 200.000 diberi label promo diskon tunggal sebesar 15%. Berapakah harga kemeja tersebut sesudah dipotong diskon?", a: "170000", sol: "Harga Akhir = 0.85 * 200.000 = Rp 170.000." },
+            { q: "Card 12: Sebuah karung kedelai bertuliskan bruto seberat 80 kg dengan tara disetel sebesar 2,5%. Hitunglah berat bersih (neto) kedelai dalam karung tersebut dalam satuan kg!", a: "78", sol: "Tara = 2.5% * 80 = 2 kg. Neto = 80 - 2 = 78 kg." },
+            { q: "Card 13: Sepasang sepatu harganya Rp 300.000 dikenakan sistem diskon bertingkat promo ganda (30% + 10%). Berapakah harga netto akhir sepatu tersebut?", a: "189000", sol: "Tahap 1 = 300.000 * 0.70 = 210.000. Tahap 2 = 210.000 * 0.90 = Rp 189.000." },
+            { q: "Card 14: Diketahui berat bruto suatu produk kaleng kornet adalah 400 gram, dengan bobot tara wadahnya 40 gram. Hitunglah tingkat persentase tara kaleng tersebut!", a: "10", sol: "Persen Tara = (40 / 400) * 100% = 10%." },
+            { q: "Card 15: Membeli sebuah jaket kulit di mal seharga Rp 450.000 setelah dipotong promo diskon tunggal sebesar 10%. Berapakah harga asli jaket kulit sebelum promo?", a: "500000", sol: "Harga Asli = 100 / 90 * 450.000 = Rp 500.000." },
+            { q: "Card 16: Satu kardus minyak goreng memiliki berat bersih (neto) 22,8 kg. Diketahui berat kemasan kardus penampung kosong (tara) adalah 1,2 kg. Berapakah berat kotor bruto wadah kardus tersebut?", a: "24", sol: "Bruto = Neto + Tara = 22.8 + 1.2 = 24 kg." },
+            { q: "Card 17: Sebuah barang elektronik ditawarkan dengan harga Rp 1.000.000 mendapat potongan harga diskon beruntun (20% + 20%). Berapakah total harga kasir akhir?", a: "640000", sol: "Tahap 1 = 1.000.000 * 0.80 = 800.000. Tahap 2 = 800.000 * 0.80 = Rp 640.000." },
+            { q: "Card 18: Karung gabah kering bertuliskan berat Bruto sebesar 100 kg dengan susut kemasan Tara 1,5%. Berapakah berat bersih neto gabah tersebut?", a: "98.5", sol: "Tara = 1.5 kg. Neto = 100 - 1.5 = 98.5 kg." },
+            { q: "Card 19: Ritel busana mendiskon celana jeans sebesar 40%. Jika Rian membayar seharga Rp 150.000 di kasir, berapakah harga asli jeans tersebut sebelum diskon?", a: "250000", sol: "Harga Asli = 100 / 60 * 150.000 = Rp 250.000." },
+            { q: "Card 20: Keranjang kayu buah apel bermassa Bruto total 50 kg dengan persentase Tara pengaman wadah 4%. Hitung berapa kg berat bersih netto buah apel!", a: "48", sol: "Tara = 4% * 50 = 2 kg. Neto = 50 - 2 = 48 kg." },
+            { q: "Card 21: Kosmetik impor berbanderol Rp 500.000 didiskon ganda bertingkat (40% + 5%). Berapakah harga netto kosmetik yang harus dibayar?", a: "285000", sol: "Tahap 1 = 500.000 * 0.60 = 300.000. Tahap 2 = 300.000 * 0.95 = Rp 285.000." },
+            { q: "Card 22: Kemasan tabung susu bubuk memiliki bruto 1 kg. Jika berat neto susu bubuk murni di dalamnya adalah 920 gram, berapakah gram berat taranya?", a: "80", sol: "Tara = Bruto - Neto = 1000 gram - 920 gram = 80 gram." },
+            { q: "Card 23: Tas ransel sekolah berharga Rp 160.000 setelah dipotong kupon potongan diskon tunggal sebesar 20%. Berapakah harga normal sebelum diskon?", a: "200000", sol: "Harga Normal = 100 / 80 * 160.000 = Rp 200.000." },
+            { q: "Card 24: Peti kayu mangga memiliki bruto total 80 kg. Jika taranya bernilai 5%, hitung berapakah kg massa neto isi mangga bersih tersebut!", a: "76", sol: "Tara = 5% * 80 = 4 kg. Neto = 80 - 4 = 76 kg." },
+            { q: "Card 25: Sebuah hoodie mendapatkan diskon 25% sehingga harganya menjadi Rp 120.000. Berapakah besarnya nominal rupiah potongan harga (diskon) tersebut?", a: "40000", sol: "Harga asli = 100 / 75 * 120.000 = 160.000. Diskon = 160.000 - 120.000 = Rp 40.000." },
+
+            // KARTU 26 - 40: VARIASI BAB 3 (TABUNGAN, PAJAK, BUNGA TUNGGAL/MAJEMUK)
+            { q: "Card 26: Susi menabung Rp 5.000.000 di bank dengan bunga tunggal tahunan flat sebesar 6%. Berapakah rupiah bunga kotor yang didapat setelah 4 bulan?", a: "100000", sol: "Bunga = 4/12 * 6% * 5.000.000 = Rp 100.000." },
+            { q: "Card 27: Membeli makan siang berharga Rp 150.000 dan dikenai tambahan pajak restoran pertambahan nilai (PPN) sebesar 11%. Hitung total uang bayar!", a: "166500", sol: "PPN = 11% * 150.000 = 16.500. Total = 150.000 + 16.500 = Rp 166.500." },
+            { q: "Card 28: Seorang desainer menerima upah bruto Rp 6.000.000 kena potongan pajak penghasilan PPh sebesar 5%. Hitung total upah bersih yang diterima desainer!", a: "5700000", sol: "PPh = 5% * 6.000.000 = 300.000. Uang bersih = 6.000.000 - 300.000 = Rp 5.700.000." },
+            { q: "Card 29: Menabung Rp 2.000.000 dengan program bunga tunggal 12% setahun. Di akhir masa tabungan, uang terkumpul Rp 2.160.000. Berapa bulan lama menabung?", a: "8", sol: "Bunga = 160.000. Bunga bulanan = 20.000. Durasi = 160.000 / 20.000 = 8 bulan." },
+            { q: "Card 30: Menyimpan dana investasi Rp 10.000.000 dengan sistem bunga majemuk berkala sebesar 5% per tahun. Hitung modal akhir tabungan tepat setelah 2 tahun!", a: "1102500", sol: "Tahun 1 = 10.500.000. Tahun 2 = 10.500.000 * 1.05 = Rp 11.025.000." },
+            { q: "Card 31: Belanja smartphone seharga Rp 3.000.000 sebelum dikenai tambahan wajib pajak PPN sebesar 10%. Berapakah nilai total biaya pembayaran di kasir?", a: "3300000", sol: "PPN = 300.000. Total = Rp 3.300.000." },
+            { q: "Card 32: Gaji bulanan seorang pegawai adalah Rp 4.000.000. Dipotong pajak penghasilan PPh 10%. Berapakah nominal rupiah potongan pajak gaji tersebut?", a: "400000", sol: "Potongan PPh = 10% * 4.000.000 = Rp 400.000." },
+            { q: "Card 33: Meminjam modal Rp 6.000.000 di koperasi dengan sistem bunga tunggal cicilan flat 10% setahun selama 1 tahun. Berapakah bunga total pinjaman?", a: "600000", sol: "Bunga = 1 * 10% * 6.000.000 = Rp 600.000." },
+            { q: "Card 34: Tabungan awal Rp 1.000.000 di bank berkembang dengan bunga tunggal p.a. Setelah 6 bulan uangnya menjadi Rp 1.040.000. Hitung persen suku bunga per tahun!", a: "8", sol: "Bunga 6 bln = 40.000 -> Bunga 1 thn = 80.000. Persentase Suku Bunga = (80.000 / 1.000.000) * 100% = 8%." },
+            { q: "Card 35: Makan di cafe habis Rp 200.000. Ditambah beban PPN 10% dan service charge layanan 5%. Hitung berapakah total nilai nominal kuitansi akhir!", a: "230000", sol: "Pajak + Service = 15% total. Efek nominal = 1.15 * 200.000 = Rp 230.000." },
+            { q: "Card 36: Juara lomba olimpiade matematika mendapat hadiah Rp 10.000.000 dipotong langsung PPh potong sebesar 15%. Berapakah hadiah bersih tunai diterima?", a: "8500000", sol: "Hadiah Bersih = 0.85 * 10.000.000 = Rp 8.500.000." },
+            { q: "Card 37: Tabungan awal Rp 8.000.000 dipatok bunga tunggal flat 9% per tahun. Hitunglah akumulasi bunga nominal bersih yang terkumpul setelah 10 bulan mengendap!", a: "600000", sol: "Bunga = 10/12 * 9% * 8.000.000 = Rp 600.000." },
+            { q: "Card 38: Berinvestasi Rp 4.000.000 dalam skema bunga majemuk 10% setahun. Berapakah nilai saldo tabungan investasi di penutupan akhir tahun ke-2?", a: "4840000", sol: "Akhir Th 1 = 4.400.000. Akhir Th 2 = 4.400.000 * 1.10 = Rp 4.840.000." },
+            { q: "Card 39: Tiket konser musik dijual Rp 1.200.000 termasuk pajak hiburan PPN sebesar 20%. Berapakah harga dasar tiket konser sebelum penambahan pajak tersebut?", a: "1000000", sol: "Harga Tiket Asli = 1.200.000 / 1.20 = Rp 1.000.000." },
+            { q: "Card 40: Seseorang meminjam Rp 5.000.000 bunga tunggal flat 12% per tahun. Jika dicicil selama jangka waktu 5 bulan, berapakah bunga pinjaman totalnya?", a: "250000", sol: "Bunga = 5/12 * 12% * 5.000.000 = Rp 250.000." },
+
+            // KARTU 41 - 50: MATERI CAMPURAN / ADVANCED CHALLENGE (HOTS)
+            { q: "Card 41: Membeli barang grosir seharga Rp 2.000.000 mendapat potongan rabat dagang 10%. Barang dijual kembali dengan sukses mencatat untung 20% dari harga belinya. Berapakah nominal total penjualan bersihnya?", a: "2160000", sol: "Harga Beli Riil = 0.90 * 2.000.000 = 1.800.000. HJ Akhir = 1.20 * 1.800.000 = Rp 2.160.000." },
+            { q: "Card 42: Karung semen Bruto 50 kg seharga Rp 80.000 memiliki Tara 2%. Toko menjual eceran semen seharga Rp 2.000/kg neto. Berapakah total keuntungan toko jika semen habis?", a: "1800", sol: "Neto = 49 kg. HJ total = 49 * 2.000 = 98.000. Untung = 98.000 - 80.000 = Rp 18.000." },
+            { q: "Card 43: Seseorang menabung modal Rp 10.000.000 bunga tunggal 6% setahun. Di akhir tahun, profit bunga dipotong pajak perbankan 20%. Hitung total dana akhir bersih!", a: "10480000", sol: "Bunga Kotor = 600.000. Pajak Bunga = 120.000. Bunga Bersih = 480.000. Total Uang Akhir = Rp 10.480.000." },
+            { q: "Card 44: Sepatu diskon 50% berharga kotor Rp 300.000 dibeli dengan dikenai tambahan pajak belanja PPN kasir sebesar 10%. Berapakah uang kasir final?", a: "165000", sol: "Harga Diskon = 150.000. Ditambah PPN 10% = 1.10 * 150.000 = Rp 165.000." },
+            { q: "Card 45: Modal awal Rp 2.000.000 diputar di usaha kecil untung 10%. Seluruh uang hasil tersebut dimasukkan ke bank dengan bunga tunggal 10% setahun selama 1 tahun. Berapakah nominal saldo akhir uangnya?", a: "2420000", sol: "Modal Bank = 2.200.000. Tabungan Akhir = 1.10 * 2.200.000 = Rp 2.420.000." },
+            { q: "Card 46: Suatu paket kardus logistik memiliki Bruto 25 kg dan Neto 24 kg. Jika distributor membawa 100 kardus sejenis, berapakah total akumulasi berat Tara kemasannya dalam kg?", a: "100", sol: "Tara per kardus = 1 kg. Untuk 100 kardus, Total Tara = 100 kg." },
+            { q: "Card 47: Membeli TV berharga label Rp 4.000.000 dengan fasilitas diskon 20% namun dibebani pajak PPN 10% setelah pemotongan diskon. Berapakah harga bayar akhir?", a: "3520000", sol: "Sisa setelah diskon = 3.200.000. Setelah ditambah PPN 10% = 1.10 * 3.200.000 = Rp 3.520.000." },
+            { q: "Card 48: Pinjaman koperasi Rp 10.000.000 diangsur selama 10 bulan dengan cicilan pokok Rp 1.000.000 ditambah bunga tetap bulanan Rp 100.000. Berapakah persentase bunga total per tahun pinjaman tersebut?", a: "12", sol: "Total Bunga 10 bulan = 1.000.000 -> Bunga per bulan = 100.000 (1% dari pokok). Setahun = 12%." },
+            { q: "Card 49: Membeli minyak goreng curah dengan Bruto 10 kg seharga Rp 140.000. Diketahui Tara jerigen penampungnya adalah 1 kg. Jika pedagang mengecerkan minyak tersebut seharga Rp 18.000 per kg neto, berapakah persen untungnya terhadap modal?", a: "15", sol: "Neto = 9 kg. Total Penjualan = 9 * 18.000 = 162.000. Untung = 22.000. Persen untung = (22.000 / 140.000) * 100% = 15.71% (dibulatkan murni 15 atau 16 berdasarkan sistem input matematika bulat)." },
+            { q: "Card 50: Hadiah undian bank Rp 20.000.000 dipotong pajak PPh 25%. Sisa dana ditabung langsung di bank dengan suku bunga tunggal 8% per tahun. Berapakah jumlah nominal uang setelah diendapkan selama 6 bulan?", a: "15600000", sol: "Uang bersih awal = 15.000.000. Bunga 6 bulan = 6/12 * 8% * 15.000.000 = 600.000. Total akhir = Rp 15.600.000." }
+        ];
+
+        function initSlide18Cards() {
+            let grid = document.getElementById('quizCardGrid');
+            grid.innerHTML = "";
+            for(let i=1; i<=50; i++) {
+                grid.innerHTML += `
+                    <button onclick="selectQuizCard(${i}, this)" class="p-1.5 border border-slate-200 bg-white text-slate-700 hover:border-slate-400 font-bold text-[11px] rounded transition-colors shadow-sm">
+                        Card ${i}
+                    </button>
+                `;
+            }
+        }
+
+        function startCountdown() {
+            if(s1Interval) clearInterval(s1Interval);
+            s18Interval = setInterval(() => {
+                if(s18TimerVal <= 0) {
+                    clearInterval(s18Interval);
+                    document.getElementById('countdownDisplay').innerText = "WAKTU HABIS";
+                    playAudioFeedback('wrong');
+                } else {
+                    s18TimerVal--;
+                    let m = Math.floor(s18TimerVal / 60).toString().padStart(2, '0');
+                    let s = (s18TimerVal % 60).toString().padStart(2, '0');
+                    document.getElementById('countdownDisplay').innerText = `${m}:${s}`;
+                }
+            }, 1000);
+        }
+
+        function add15Seconds() {
+            s18TimerVal += 15;
+        }
+
+        function selectQuizCard(num, element) {
+            s18ActiveNum = num;
+            s18TimerVal = 180;
+            document.getElementById('countdownDisplay').innerText = "03:00";
+            if(s18Interval) clearInterval(s18Interval);
+
+            let data = dbQuiz50[num - 1];
+            document.getElementById('s18ActiveArea').classList.remove('hidden');
+            document.getElementById('s18Title').innerText = `Tantangan Utama - Kartu Nomor ${num}`;
+            document.getElementById('s18Text').innerText = data.q;
+            document.getElementById('s18Input').value = "";
+            document.getElementById('s18SolBox').innerText = `[Pembahasan Kartu ${num}]: ` + data.sol;
+            document.getElementById('s18SolBox').classList.add('hidden');
+            document.getElementById('s18InteractionBlock').className = "flex items-center gap-2 max-w-sm pt-1";
+        }
+
+        function checkS18Answer() {
+            if(s18ActiveNum === null) return;
+            let data = dbQuiz50[s18ActiveNum - 1];
+            let ans = document.getElementById('s18Input').value.trim();
+            let block = document.getElementById('s18InteractionBlock');
+
+            if(ans === data.a) {
+                clearInterval(s18Interval);
+                block.className = "flex items-center gap-2 max-w-sm pt-1 p-2 bg-emerald-100 border border-emerald-300 rounded-xl text-emerald-950 font-bold text-xs";
+                playAudioFeedback('correct');
+                
+                // Masukkan rekor durasi berpikir menuju dashboard analitik slide 19
+                quizLogs.push({ card: s18ActiveNum, duration: 180 - s18TimerVal });
+                updateDashboardDashboard();
+            } else {
+                block.className = "flex items-center gap-2 max-w-sm pt-1 p-2 bg-rose-100 border border-rose-300 rounded-xl text-rose-950 font-bold text-xs";
+                playAudioFeedback('wrong');
+            }
+        }
+
+        function updateDashboardDashboard() {
+            let container = document.getElementById('s19DashboardLog');
+            if(quizLogs.length === 0) return;
+            container.innerHTML = quizLogs.map(log => `
+                <p class="text-slate-700">✓ Kartu Misteri #${log.card}: Berhasil diselesaikan dalam durasi singkat <b>${log.duration} detik</b> pengerjaan murni.</p>
+            `).join('');
+        }
+
+        // INIT ENGINE SYSTEM ON WINDOW LOADED
+        window.onload = function() {
+            loadS7();
+            loadS12();
+            loadS17();
+            initSlide18Cards();
+        }
+    </script>
+</body>
+</html>
